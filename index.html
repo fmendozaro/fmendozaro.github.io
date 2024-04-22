@@ -1,12 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <title>Fernando Mendoza Rodriguez Website</title>
+    <meta name="author" content="Fernando Mendoza Rodriguez">
+    <title>Fernando Mendoza Rodriguez - Software Developer</title>
+    <meta name="description"
+          content="Fernando Mendoza Rodriguez's online resume, born in Mexico and currently based in the US, I'm a systems engineer with a BS in computer science.">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="css/hover.css" rel="stylesheet" media="all">
+    <link rel="stylesheet" href="css/circle.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/experience.css">
+    <link rel="icon" type="image/png" href="img/favicon.ico">
 </head>
+
 <body>
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet ea ex perferendis placeat! Animi, cum eos error esse id labore nulla obcaecati placeat quae quod tenetur, veniam voluptatibus. Ex, quas.
+<span id="top-target"></span>
+<!--Menu Overlay-->
+<div id="overlay">
+    <a href="#!" id="close-overlay" class="right btn-floating waves-effect waves-circle red">
+        <i class="material-icons">close</i>
+    </a>
+</div>
+
+<!--Blackout for the PSOne effect-->
+<div id="blackout"></div>
+
+<div id="nav-btn" class="menu-load col l12 hide-on-med-and-down z-depth-2">
+    <p>Menu</p>
+</div>
+
+<!-- Dynamic menu -->
+<div id="menu-wrapper" class="align-wrapper center-align">
+    <div class="main-menu">
+        <ul>
+            <li class="links" id="about-me-link" data-target="about-me">
+                <a href="#">About me</a>
+            </li>
+            <li class="links" data-target="experience">
+                <a href="#">Experience</a>
+            </li>
+            <li class="links" data-target="projects">
+                <a href="#">Projects</a>
+            </li>
+            <li class="links modal-trigger" data-target="contact">
+                <a href="mailto:fernandoza@gmail.com">Contact</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="psone">
+    <div id="close-message">
+        <span>Press ESC to close</span>
+    </div>
+    <h1>Fer's</h1>
+    <div class="rombo">
+        <div id="left" class="half"></div>
+        <div id="right" class="half"></div>
+    </div>
+    <h2>Computer <br> Entertaiment</h2>
+</div>
+
+<!--Mobile-->
+<nav class="blue darken-1 top-nav">
+    <div class="nav-wrapper">
+        <a href="" class="brand-logo left hvr-wobble-skew">
+            <i class="material-icons">home</i>
+        </a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+        <ul class="sidenav" id="mobile-demo">
+            <li><a href="#" class="subheader"><i class="material-icons">view_module</i>Sections</a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a href="#" class="links" data-target="about-me"><i class="material-icons">account_circle</i>About</a></li>
+            <li><a href="#" class="links" data-target="experience"><i class="material-icons">timeline</i>Experience</a></li>
+            <li><a href="#" class="links" data-target="projects"><i class="material-icons">important_devices</i>Projects</a></li>
+            <div class="divider"></div>
+            <li><a href="#" class="subheader"><i class="material-icons">http</i>External Links</a></li>
+            <li>
+                <div class="divider"></div>
+            </li>
+            <li><a href="https://linkedin.com/in/fmendozaro" target="_blank"><i
+                    class="material-icons ">work</i>LinkedIn</a></li>
+            <li><a href="https://github.com/fmendozaro" target="_blank"><i class="material-icons">code</i>Github</a>
+            </li>
+            <li><a href="mailto:fernandoza@gmail.com"><i class="material-icons">mail</i>E-mail</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="container">
+            <div id="content" class="row card-panel lighten-3">
+                <div class="col s12">
+                    <h3 class="page-title">¡Bienvenido! / Welcome!</h3>
+                    <div class="center-align">
+                        <img id="logo" class="responsive-img hvr-grow-rotate" src="img/logo.png" alt="logo">
+                    </div>
+                    <h5 class="page-title">Introduction:</h5>
+                    <div class="divider"></div>
+                    <div class="section">
+                        <p>
+                            As a seasoned <strong>software developer</strong> with over nine years of experience, I am dedicated to fostering a collaborative and supportive work environment through effective communication, mentorship, and empathy. With a passion for continuous learning and technological advancement, I am committed to staying up-to-date on the latest tools and techniques in the field. At the heart of my work is a desire to create software solutions that enhance and simplify the daily lives of users.
+                            <br><br>
+                            I was born and raised in México, I am currently based in San Francisco, CA.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="about-me" class="hide">
+        <div data-page="about-me" class="col s12">
+            <h4 class="page-title">About me</h4>
+            <div class="divider"></div>
+            <div class="section">
+                <h5 class="subtitle page-title">Languages</h5>
+                <ul>
+                    <li>Spanish [Native]</li>
+                    <li>English [Professional working proficiency]</li>
+                    <li>Portuguese [Learning]</li>
+                </ul>
+                <h5 class="subtitle page-title">Achievements</h5>
+                <ul>
+                    <li>16th place in the Regional Programming Contest Zamora 2010 sponsored by IBM.</li>
+                </ul>
+                <h5 class="subtitle page-title">Professional Formation</h5>
+                <ul>
+                    <li>BS. in Computer Science [Systems Engineering] in Uruapan, Michoacán, México</li>
+                    <li>Mobile Web Specialist <a href="https://graduation.udacity.com/confirm/UGGQF9HT"
+                                                 target="_blank">Nanodegree</a></li>
+                    <li>Professional License issued in Mexico: 8416506</li>
+                </ul>
+                <h5 class="subtitle page-title">Hobbies</h5>
+                <ul>
+                    <li>Video games</li>
+                    <li>Travel</li>
+                    <li>Live Music</li>
+                    <li>Watch Films</li>
+                    <li>Reading</li>
+                    <li>Walks in nature</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="experience" class="hide">
+        <div data-page="experience" class="col s12">
+            <img class="responsive-img" id="lap" src="img/lap.jpg" alt="me">
+            <h3 class="page-title">Professional Experience</h3>
+            <div class="divider"></div>
+            <section>
+                <h5 class="subtitle page-title">Software Developer</h5>
+                <section class="center-align">
+                    <img alt="universal music logo" class="responsive-img exp-img" src="img/Universal_Music_Latin_Entertainment.png">
+                    <img alt="tutti creative logo" class="responsive-img exp-img" src="img/tutti.svg">
+                    <img alt="gameplanet logo" class="responsive-img exp-img" src="img/gp.png">
+                    <img alt="dit logo" class="responsive-img exp-img" src="img/dit.png">
+                    <img alt="codeup logo" class="responsive-img exp-img" src="img/codeup_logo.png">
+                </section>
+                <p class="description">With more than <span id="dev-exp"></span> years of professional software
+                    development,
+                    mobile responsive design, development of ERP / CRM internal tools for internal company management,
+                    and some data mining.
+                    <br><br>
+                    These are some of the programming languages I worked with (hover or click them to see a cool effect
+                    😄)
+                </p>
+                <ul class="experience-hub"></ul>
+            </section>
+            <div class="divider"></div>
+            <section>
+                <h5 class="subtitle page-title">Web Development Instructor</h5>
+                <div class="center-align">
+                    <img alt="codeup logo" class="responsive-img exp-img" src="img/codeup_logo.png">
+                </div>
+                <div class="divider"></div>
+                <div class="slider">
+                    <ul id="slideshow" class="slides"></ul>
+                </div>
+
+                <p class="description">
+                    I bring more than <span id="teach-exp"></span> years of teaching in the IT field, delivering content
+                    that goes from the basic use of a computer to programming languages both in Spanish and English in
+                    Mexico and the USA.
+                    <br><br>
+                    More recently at Codeup, I am responsible for training people from all different backgrounds
+                    including beginners without previous experience in coding during a 20+ week intensive 9 am to 5 pm
+                    program. Teaching common web development practices involving programming languages such as PHP,
+                    Java, Javascript, CSS, HTML, MySQL, and some frameworks/libraries such as jQuery, Node.js, and
+                    Spring Boot MVC for Java and Laravel for PHP. Along with some of the modern VCS systems like Git and
+                    it's better practices workflow in a development team project.
+                    <br><br>
+                    During the last 2 weeks of the course, I take the role of lead IT project manager for several teams
+                    of around 3 people to create a capstone project, exposing the students to a basic Agile methodology
+                    for software development to simulate a real web development team environment.
+                </p>
+            </section>
+        </div>
+    </div>
+
+    <div id="projects" class="hide">
+        <div data-page="projects" class="col s12">
+            <h4 class="page-title">Personal projects</h4>
+            <div class="divider"></div>
+            <div class="col s12">
+                <div id="cards"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div id="footer" class="container hide-on-med-and-down">
+            <div class="row" id="footer-container">
+                <a id="icon-one" href="https://github.com/fmendozaro" target="_blank"><img src="img/github.png"
+                                                                                           alt="Github"
+                                                                                           class="social-icons hvr-grow-shadow"></a>
+                <a id="icon-two" href="https://www.linkedin.com/in/fmendozaro"
+                   target="_blank"><img
+                        src="img/linkedin.png" alt="LinkedIn" class="social-icons hvr-grow-shadow"></a>
+                <a id="icon-three" href="mailto:fernandoza@gmail.com"><img src="img/mail.png" alt="Mail"
+                                                                           class="social-icons hvr-grow-shadow"></a>
+            </div>
+        </div>
+    </footer>
+
+    <a id="go-top" class="waves-effect waves-light blue darken-1 pulse btn btn-floating" href="#top-target"><i
+            class="material-icons">arrow_upward</i></a>
+
+    <!-- Tap Target Structure -->
+    <div class="tap-target" data-activates="go-top">
+        <div class="tap-target-content">
+            <h5 class="page-title">Title</h5>
+            <p>A bunch of text</p>
+        </div>
+    </div>
+</div>
+<!--container-->
+
+<audio id="ps-audio" style="display: none;">
+    <source src="media/psx.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="js/props.js"></script>
+<script src="js/psIntro.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-11268957-7"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'UA-11268957-7');
+</script>
 
 </body>
 </html>

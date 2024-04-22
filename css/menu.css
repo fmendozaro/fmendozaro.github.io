@@ -1,0 +1,75 @@
+#menu-wrapper{
+    position: relative;
+}
+
+.main-menu {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index:999;
+    margin-left: -150px;
+    margin-top: -150px;
+}
+
+.main-menu ul {
+    transform: scale(1);
+    transition: all .2s ease-out;
+}
+
+.main-menu li {
+    position: absolute;
+    top: -55px;
+    left: -30px;
+    width: 180px;
+    height: 180px;
+    transform-origin: bottom right;
+    background-color: #1e88e5;
+    color: #FFF;
+    border: 1px solid white;
+    cursor: pointer;
+}
+
+.main-menu li:hover {
+    background-color: #071725;
+    transition: all .3s ease-out;
+}
+
+.main-menu li:nth-child(1) {
+    transform: rotate(-30deg) skew(30deg);
+}
+
+.main-menu li:nth-child(2) {
+    transform: rotate(30deg) skew(30deg);
+}
+
+.main-menu li:nth-child(3) {
+    transform: rotate(90deg) skew(30deg);
+}
+
+.main-menu li:nth-child(4) {
+    transform: rotate(150deg) skew(30deg);
+}
+
+.main-menu li:nth-child(5) {
+    transform: rotate(210deg) skew(30deg);
+}
+
+.main-menu li:nth-child(6) {
+    transform: rotate(270deg) skew(30deg);
+}
+
+
+.main-menu li a {
+    position: absolute;
+    top: 58%;
+    left: 48%;
+    transform: skew(-30deg) rotate(-57deg);
+    color: #fff;
+    font-family: Verdana, Arial;
+    font-size: 1rem;
+    text-decoration: none;
+}

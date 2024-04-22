@@ -1,0 +1,360 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+body {
+    font-size: 1rem;
+}
+
+@keyframes nav-intro {
+    0% {
+        top: -20%;
+    }
+    100% {
+        top: -7%;
+    }
+}
+
+@keyframes menu-intro-an {
+    from {
+        top: -50px;
+        width: 100px;
+        height: 100px;
+    }
+    to {
+        top: 50%;
+        left: 50%;
+        width: 150px;
+        height: 150px;
+        margin-top: -75px;
+        margin-left: -75px;
+    }
+}
+
+@keyframes menu-outro-an {
+    from {
+        top: 50%;
+        left: 50%;
+        width: 150px;
+        height: 150px;
+        margin-top: -75px;
+        margin-left: -75px;
+    }
+    to {
+        top: -50px;
+        width: 100px;
+        height: 100px;
+    }
+}
+
+body {
+    background-color: #183446;
+    height: 100vh;
+    background: linear-gradient(rgba(51, 170, 255, 0.3), rgba(51, 170, 255, .3)), url('../img/simple_dashed.png');
+    color: black;
+}
+
+#intro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px);
+}
+
+#content {
+    margin-top: 20px;
+}
+
+.page-title {
+    font-family: 'Righteous', cursive;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100vh;
+    background: rgba(7, 23, 37, 0.9);
+    display: none;
+}
+
+#close-overlay {
+    margin-right: 25px;
+    margin-top: 20px;
+}
+
+#nav-btn {
+    position: fixed;
+    top: -50px;
+    left: 50%;
+    margin-left: -50px;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    background-color: #fcf9ff;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+#nav-btn p {
+    padding-top: 24%;
+    color: black;
+    font-weight: bolder;
+    font-size: 1.6em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#profile-pic {
+    /*height: 300px;*/
+    /*width: 300px;*/
+    border: 5px solid #022f40;
+}
+
+#contact input, textarea {
+    color: navy;
+    font-weight: bolder;
+}
+
+.subtitle {
+    color: #1e88e5;
+}
+
+.div_loading_progress span {
+    color: #022f40;
+}
+
+.menu-load {
+    animation: nav-intro 0.5s 1;
+    animation-timing-function: ease-out;
+}
+
+.menu-intro {
+    animation: menu-intro-an 1s 1;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+.menu-outro {
+    animation: menu-outro-an 1s 1;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+#footer {
+    position: relative;
+    height: 100px;
+    width: 100%;
+    overflow: hidden;
+}
+
+#footer-container {
+    border-radius: 55%;
+    position: fixed;
+    bottom: -450px;
+    width: 100%;
+    height: 500px;
+    margin: auto;
+    background-image: linear-gradient(#2490eb, #090899);
+    right: 0px;
+    left: 0px;
+}
+
+.social-icons {
+    position: absolute;
+    top: -15px;
+    margin-left: 32%;
+    height: 50px;
+    width: 50px;
+}
+
+#icon-one {
+    margin-left: -6%;
+}
+
+#icon-two {
+    margin-left: 20%;
+}
+
+#icon-three {
+    margin-left: 20%;
+}
+
+/*PsOne Intro*/
+
+#psone {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #04369B;
+    font-weight: bolder;
+    font-family: 'Libre Baskerville', serif;
+    text-transform: uppercase;
+    z-index: 1001;
+}
+
+.psone-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#psone h1, h2 {
+    text-align: center;
+    padding: 30px 0;
+}
+
+.rombo {
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff3232+0,ffea30+50,ff0000+100 */
+    background: #ff3232; /* Old browsers */
+    background: -moz-linear-gradient(45deg, #ff3232 0%, #ffea30 50%, #ff0000 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #ff3232 0%, #ffea30 50%, #ff0000 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, #ff3232 0%, #ffea30 50%, #ff0000 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3232', endColorstr='#ff0000', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+
+    width: 300px;
+    height: 300px;
+
+    display: block;
+    margin: auto;
+
+}
+
+.half {
+
+    width: 100px;
+    height: 100px;
+
+    display: block;
+    margin: auto;
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff3232+0,ffea30+52&1+0,0+52 */
+    background: -moz-linear-gradient(45deg, rgba(255, 50, 50, 1) 0%, rgba(255, 234, 48, 0) 52%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, rgba(255, 50, 50, 1) 0%, rgba(255, 234, 48, 0) 52%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(45deg, rgba(255, 50, 50, 1) 0%, rgba(255, 234, 48, 0) 52%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3232', endColorstr='#00ffea30', GradientType=1); /* IE6-9 fallback on horizontal gradient */
+
+}
+
+#left {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    position: absolute;
+    top: 50px;
+    left: 60px;
+}
+
+#right {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    position: absolute;
+    bottom: 50px;
+    right: 60px;
+}
+
+#blackout {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100vh;
+    background-color: black;
+    display: none;
+}
+
+.exp-img {
+    width: 150px;
+    margin: 30px;
+}
+
+.description {
+    font-size: 1.1rem;
+}
+
+.aboutme {
+    background: url("../img/fer-bg.png") bottom right;
+    background-blend-mode: lighten;
+    background-repeat: no-repeat;
+}
+
+#lap {
+    float: right;
+    width: 20%;
+    height: auto;
+}
+
+.top-nav {
+    background-image: linear-gradient(#2490eb, #06004b);
+}
+
+#go-top {
+    position: fixed;
+    bottom: 15px;
+    right: 30px;
+}
+
+#logo {
+    width: 400px;
+}
+
+.card-title {
+    opacity: 0.8;
+    background-color: black !important;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating){
+    color: #2490eb;
+    text-transform: lowercase;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating):hover {
+    color: black;
+}
+
+.brand-logo {
+    margin-left: 20px;
+}
+
+.card-action {
+    background-color: #307bbb !important;
+    font-weight: bolder;
+}
+
+#close-message {
+    margin-top: 15px;
+}
+
+#close-message a {
+    margin: -8px 10px;
+}
+
+.ps-button {
+    background-color: #2d2c2f;
+    color: #7E96C0;
+    font-weight: bold;
+    width: 100px;
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FD</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Playball');
+        body {
+            background-color: #FEE8B9;
+            background-image: url('../img/poke-bg.png');
+            background-size: cover;
+            background-repeat:no-repeat;
+            background-position: right;
+            font-family: 'Playball', cursive;
+            font-size: 1rem;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #label {
+            line-height: 50px;
+            text-align: center;
+        }
+
+        #hugContainer {
+            display: flex;
+            width: 90%;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+            margin: 10px auto;
+            margin-top: 200px;
+        }
+
+        .hug {
+            width: 200px;
+            height: 100px;
+            background-image: url('../img/hug.png');
+            background-size: contain;
+            position: absolute;
+            top: 200px;
+            border-style: none;
+            border: none;
+            background-repeat:no-repeat;
+        }
+        #fer {
+            -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+        .info:nth-child(3) {
+            -moz-transform: scaleX(0);
+            -o-transform: scaleX(1);
+            -webkit-transform: scaleX(1);
+            transform: scaleX(1);
+        }
+    </style>
+</head>
+<body>
+
+<div id="hugContainer">
+    <h2 id="label"></h2>
+    <div class="hug" id="daniel"><span class="info"></span></div>
+    <div class="hug" id="fer"><span class="info"></span></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('sw.js').then( (registration) => {
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, (err) => {
+                console.log('ServiceWorker registration failed: ', err);
+            })
+        });
+    }
+
+    (function(){
+        let ferReturn = moment('2019-01-04 19:45:00');
+        // let ferReturn = moment('2018-12-24 15:38:00');
+        let timer= null;
+        let ferObj = $('#fer');
+        let danObj = $('#daniel');
+        let mins = ferReturn.diff(moment(), 'minutes');
+        let wW = window.innerWidth;
+        let secs = ferReturn.diff(moment(), 'seconds');
+        console.log('window w',wW);
+        if(secs < 1){
+            clearInterval(timer);
+            $('#label').text('Cuddle time!');
+            return false;
+        }
+
+        let size = 0.2;
+        switch(wW){
+            case 640:
+                size = 0.25;
+                break;
+            case 853:
+                size = 0.3;
+                break;
+            case 1280:
+                size = 0.35;
+                break;
+        }
+
+        ferObj.css('right', `${(size * wW) / (secs)}px`);
+        danObj.css('left', `${(size * wW) / (secs)}px`);
+        timer = setInterval( () => {
+            console.log('secs left',secs);
+            let days = ferReturn.diff(moment(), 'days');
+            let hours = ferReturn.diff(moment(), 'hours');
+            mins = ferReturn.diff(moment(), 'minutes');
+            secs = ferReturn.diff(moment(), 'seconds');
+            let absolutePos = (size * wW) / secs;
+            console.log(`Daniel left: ${danObj.css('left')}`);
+            console.log(`Fer right: ${ferObj.css('right')}`);
+            if(secs < 1){
+                clearInterval(timer);
+                $('#label').text('Cuddle time!');
+                return false;
+            }
+            $('#label').text(`We will be able to hug each other in: ${days} days ${hours} hours ${mins} minutes ${secs} seconds`);
+            ferObj.css( "right", `${absolutePos}px`);
+            danObj.css( "left", `${absolutePos}px`);
+        }, 1000);
+
+    })();
+</script>
+</body>
+</html>
