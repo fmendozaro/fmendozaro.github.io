@@ -33,6 +33,13 @@ const PROPS = {
     ],
     "projects": [
         {
+            "name": "Alvarez Wedding Live",
+            "imgUrl": "./img/projects/alvarezwedding.png",
+            "url": "https://alvarezwedding.live/",
+            "description": "My cousins wedding RSVP website, using Vue.js 3 and some Adobe Generative AI for graphics, patterns and textures."
+            
+        },
+        {
             "name": "OnlyFlans",
             "imgUrl": "./img/projects/OnlyFlans.jpg",
             "url": "https://onlyflans.link",
