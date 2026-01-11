@@ -90,6 +90,18 @@ $(document).ready(function () {
     });
 
     $("#nav-btn").click(function () {
+        openMenu();
+    });
+
+    // Handle keyboard accessibility for #nav-btn
+    $("#nav-btn").keydown(function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openMenu();
+        }
+    });
+
+    function openMenu() {
         $("#overlay").fadeIn();
 
         setTimeout(function () {
@@ -100,7 +112,7 @@ $(document).ready(function () {
         $("#nav-btn").removeClass("menu-load menu-outro").addClass("menu-intro");
         $("#nav-wrapper").removeClass("hide-on-large-only");
         // $(".button-collapse").sideNav("show");
-    });
+    }
 
     $(".links").click(function (event) {
         $(".sidenav").sidenav("close");
