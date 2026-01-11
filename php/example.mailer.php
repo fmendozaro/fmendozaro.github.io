@@ -1,38 +1,54 @@
 <?php
-require '../vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
+// Load Composer's autoloader
+require '../vendor/autoload.php';
 
-$mail = new PHPMailer;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-$from = $_POST["email"];
-$name = $_POST["fullName"];
-$msg = $_POST["message"];
-$subject = $_POST["subject"];
+$mail = new PHPMailer(true);
 
 $msgObj = new stdClass();
 
-//    $mail->SMTPDebug = 1;                               // Enable verbose debug output
+// Input Validation & Sanitization
+$from = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+$name = htmlspecialchars($_POST["fullName"] ?? '', ENT_QUOTES, 'UTF-8');
+$msg = htmlspecialchars($_POST["message"] ?? '', ENT_QUOTES, 'UTF-8');
+$subject = htmlspecialchars($_POST["subject"] ?? '', ENT_QUOTES, 'UTF-8');
 
-$mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'domain.com;smtp.domain.com';  // Specify main and backup SMTP servers
-$mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'username';                 // SMTP username
-$mail->Password = 'pass';                           // SMTP password
-$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 587;                                    // TCP port to connect to
+if (!$from) {
+    $msgObj->msg = 'Invalid email address.';
+    $msgObj->error = 'Invalid email format';
+    header('Content-Type: application/json');
+    echo json_encode($msgObj);
+    exit;
+}
 
-$mail->setFrom('mail@mail.com', $from);
-$mail->addAddress('mail@mail.com', 'name');     // Add a recipient
+try {
+    // Server settings
+    $mail->isSMTP();                                            // Set mailer to use SMTP
+    $mail->Host = getenv('SMTP_HOST') ?: 'smtp.example.com';    // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                                     // Enable SMTP authentication
+    $mail->Username = getenv('SMTP_USER') ?: 'user@example.com';// SMTP username
+    $mail->Password = getenv('SMTP_PASS') ?: 'secret';          // SMTP password
+    $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 587;                                          // TCP port to connect to
 
-$mail->isHTML(true);                                  // Set email format to HTML
+    // Recipients
+    $mail->setFrom(getenv('MAIL_FROM') ?: 'noreply@example.com', 'Mailer');
+    $mail->addAddress(getenv('MAIL_TO') ?: 'admin@example.com', 'Admin');     // Add a recipient
+    $mail->addReplyTo($from, $name);
 
-$mail->Subject = $subject;
-$mail->Body    = $msg;
+    // Content
+    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->Subject = $subject;
+    $mail->Body    = $msg;
 
-if(!$mail->send()) {
-    $msgObj->msg = 'Message could not be sent.';
-    $msgObj->error = 'Mailer Error: ' . $mail->ErrorInfo;
-} else {
+    $mail->send();
     $msgObj->msg = 'Message has been sent successfully';
+} catch (Exception $e) {
+    $msgObj->msg = 'Message could not be sent.';
+    // Don't expose detailed error info in production
+    $msgObj->error = 'Mailer Error';
 }
 
 header('Content-Type: application/json');
