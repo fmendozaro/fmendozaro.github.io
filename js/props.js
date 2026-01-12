@@ -9,9 +9,19 @@ const PROPS = {
             "extras": ["Java SE", "Java EE", "Spring Boot", "Hibernate", "Servlets", "JSP", "JSTL", "Thymeleaf", "EL", "Tomcat"]
         },
         {
-            "lang": "javascript",
-            "extras": ["node.js", "npm", "webpack", "jQuery", "angular"],
-            "year": 2012
+            "lang": "Salesforce",
+            "year": 2021,
+            "extras": ["Apex", "LWC", "SOQL", "Visualforce"]
+        },
+        {
+            "lang": "DevOps & Cloud",
+            "year": 2021,
+            "extras": ["AWS", "Azure", "Docker", "Kubernetes", "CI/CD"]
+        },
+        {
+            "lang": "Frontend",
+            "year": 2012,
+            "extras": ["React", "Vue", "Tailwind", "Bootstrap", "Materialize"]
         },
         {
             "lang": "php",
@@ -25,6 +35,11 @@ const PROPS = {
         {
             "lang": "sql server",
             "year": 2015
+        },
+        {
+            "lang": "javascript",
+            "extras": ["node.js", "npm", "webpack", "jQuery", "angular"],
+            "year": 2012
         },
         {
             "lang": "grails",
