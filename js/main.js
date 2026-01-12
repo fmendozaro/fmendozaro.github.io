@@ -165,12 +165,7 @@ $(document).ready(function () {
 
     cardsDiv.append(cards);
 
-    let shuffled = PROPS.experience
-        .map((a) => ({sort: Math.random(), value: a}))
-        .sort((a, b) => a.sort - b.sort)
-        .map((a) => a.value);
-
-    shuffled.forEach(function (e) {
+    PROPS.experience.forEach(function (e) {
         let lang = e.lang.toUpperCase();
         let years = (new Date()).getFullYear() - e.year;
         $('.experience-hub').append(`<span class="letter" data-letter="${lang}">${lang}</span>`);
