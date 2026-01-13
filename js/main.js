@@ -170,11 +170,14 @@ $(document).ready(function () {
         .sort((a, b) => a.sort - b.sort)
         .map((a) => a.value);
 
+    // ⚡ Bolt: Batch DOM updates to minimize reflows/repaints (O(n) -> O(1) DOM operations)
+    let experienceHtml = "";
     shuffled.forEach(function (e) {
         let lang = e.lang.toUpperCase();
         let years = (new Date()).getFullYear() - e.year;
-        $('.experience-hub').append(`<span class="letter" data-letter="${lang}">${lang}</span>`);
+        experienceHtml += `<span class="letter" data-letter="${lang}">${lang}</span>`;
     });
+    $('.experience-hub').append(experienceHtml);
 
     $('#dev-exp').text(today.getFullYear() - PROPS.generalExp.dev);
     $('#teach-exp').text(today.getFullYear() - PROPS.generalExp.teach);
