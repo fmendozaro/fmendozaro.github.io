@@ -148,9 +148,10 @@ $(document).ready(function () {
 
     // Load projects section
     PROPS.projects.forEach(function (el, i) {
+        // ⚡ Bolt: Lazy load project images
         cards += `<div class="card">
                 <div class="card-image">
-                    <img src="${el.imgUrl}">
+                    <img src="${el.imgUrl}" loading="lazy">
                     <span class="card-title blue-text blue lighten-5"><strong>${el.name}</strong></span>
                     <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank"><i class="material-icons">language</i></a>
                 </div>
@@ -185,8 +186,9 @@ $(document).ready(function () {
     // Load the cohorts
 
     PROPS.cohorts.forEach(function (e, i) {
+        // ⚡ Bolt: Lazy load slider images
         imgsHTML += `<li>
-                        <img class="cohort materialboxed" src="img/cohorts/${e}">
+                        <img class="cohort materialboxed" src="img/cohorts/${e}" loading="lazy">
                     </li>`;
     });
     slideShow.append(imgsHTML);
