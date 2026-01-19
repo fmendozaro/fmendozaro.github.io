@@ -1,0 +1,3 @@
+## 2024-05-22 - [Hidden Section Image Eager Loading]
+**Learning:** This codebase simulates a Single Page Application (SPA) using hidden `div` elements (e.g., `#experience`, `#projects`) that are toggled via jQuery. However, images within these "hidden" views were being eagerly loaded by the browser on initial page load, consuming bandwidth for content the user hasn't requested yet.
+**Action:** Always verify "hidden" content implementation. If it uses `display: none` or `.hide` classes, ensure child `<img>` tags have `loading="lazy"` so the browser defers loading until the user actually navigates to that section.
