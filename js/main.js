@@ -150,9 +150,9 @@ $(document).ready(function () {
     PROPS.projects.forEach(function (el, i) {
         cards += `<div class="card">
                 <div class="card-image">
-                    <img src="${el.imgUrl}">
+                    <img src="${el.imgUrl}" loading="lazy" alt="${el.name} project image">
                     <span class="card-title blue-text blue lighten-5"><strong>${el.name}</strong></span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank"><i class="material-icons">language</i></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank" rel="noopener noreferrer"><i class="material-icons">language</i></a>
                 </div>
                 <div class="card-content light-blue lighten-5">
                     <p>${el.description}</p>
@@ -186,7 +186,7 @@ $(document).ready(function () {
 
     PROPS.cohorts.forEach(function (e, i) {
         imgsHTML += `<li>
-                        <img class="cohort materialboxed" src="img/cohorts/${e}">
+                        <img class="cohort materialboxed" src="img/cohorts/${e}" loading="lazy" alt="Cohort ${e}">
                     </li>`;
     });
     slideShow.append(imgsHTML);
