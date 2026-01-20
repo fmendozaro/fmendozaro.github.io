@@ -89,7 +89,10 @@ $(document).ready(function () {
         }
     });
 
-    $("#nav-btn").click(function () {
+    $("#nav-btn").on("click keydown", function (e) {
+        if (e.type === "keydown" && e.which !== 13 && e.which !== 32) return;
+        if (e.type === "keydown") e.preventDefault();
+
         $("#overlay").fadeIn();
 
         setTimeout(function () {
@@ -124,7 +127,9 @@ $(document).ready(function () {
     // Forces a link to a particular section
     // $(".links").first().next().trigger('click');
 
-    $("#close-overlay").click(function () {
+    $("#close-overlay").on("click keydown", function (e) {
+        if (e.type === "keydown" && e.which !== 13 && e.which !== 32) return;
+        if (e.type === "keydown") e.preventDefault();
         closeOverlay();
     });
 
