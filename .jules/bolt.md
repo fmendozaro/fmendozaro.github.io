@@ -1,0 +1,3 @@
+## 2026-01-21 - [Native Lazy Loading Implementation]
+**Learning:** This single-page-like application hides large sections (like `#experience`) initially, but browsers still download the images inside them immediately. Implementing native `loading="lazy"` on these hidden images is a highly effective, low-risk optimization here. Also, since images are dynamically generated in `js/main.js`, we must not forget to add the attribute in the template literals there too.
+**Action:** Always check both static HTML and dynamic JS template literals for image tags when implementing lazy loading in legacy/SPA-like codebases.
