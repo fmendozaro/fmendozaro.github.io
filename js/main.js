@@ -147,18 +147,19 @@ $(document).ready(function () {
     });
 
     // Load projects section
+    // ⚡ Bolt: Added lazy loading to dynamic images
     PROPS.projects.forEach(function (el, i) {
         cards += `<div class="card">
                 <div class="card-image">
-                    <img src="${el.imgUrl}">
+                    <img src="${el.imgUrl}" loading="lazy">
                     <span class="card-title blue-text blue lighten-5"><strong>${el.name}</strong></span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank"><i class="material-icons">language</i></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank" rel="noopener noreferrer"><i class="material-icons">language</i></a>
                 </div>
                 <div class="card-content light-blue lighten-5">
                     <p>${el.description}</p>
                 </div>
                 <div class="card-action blue-text text-darken-2">
-                    <a class="links" href="${el.url}" target="_blank">${el.name} link</a>
+                    <a class="links" href="${el.url}" target="_blank" rel="noopener noreferrer">${el.name} link</a>
                 </div>
             </div>`;
     });
@@ -186,7 +187,7 @@ $(document).ready(function () {
 
     PROPS.cohorts.forEach(function (e, i) {
         imgsHTML += `<li>
-                        <img class="cohort materialboxed" src="img/cohorts/${e}">
+                        <img class="cohort materialboxed" src="img/cohorts/${e}" loading="lazy">
                     </li>`;
     });
     slideShow.append(imgsHTML);
