@@ -102,6 +102,13 @@ $(document).ready(function () {
         // $(".button-collapse").sideNav("show");
     });
 
+    $("#nav-btn").keydown(function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            $(this).click();
+        }
+    });
+
     $(".links").click(function (event) {
         $(".sidenav").sidenav("close");
         let $content = $("#content");
@@ -148,17 +155,18 @@ $(document).ready(function () {
 
     // Load projects section
     PROPS.projects.forEach(function (el, i) {
+        // 🎨 Palette: Added accessible labels, alt text, and security attributes
         cards += `<div class="card">
                 <div class="card-image">
-                    <img src="${el.imgUrl}">
+                    <img src="${el.imgUrl}" alt="${el.name} screenshot">
                     <span class="card-title blue-text blue lighten-5"><strong>${el.name}</strong></span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank"><i class="material-icons">language</i></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${el.name} website"><i class="material-icons">language</i></a>
                 </div>
                 <div class="card-content light-blue lighten-5">
                     <p>${el.description}</p>
                 </div>
                 <div class="card-action blue-text text-darken-2">
-                    <a class="links" href="${el.url}" target="_blank">${el.name} link</a>
+                    <a class="links" href="${el.url}" target="_blank" rel="noopener noreferrer">${el.name} link</a>
                 </div>
             </div>`;
     });
@@ -185,8 +193,10 @@ $(document).ready(function () {
     // Load the cohorts
 
     PROPS.cohorts.forEach(function (e, i) {
+        // 🎨 Palette: Added alt text derived from filename
+        let altText = e.split('.')[0] + " cohort";
         imgsHTML += `<li>
-                        <img class="cohort materialboxed" src="img/cohorts/${e}">
+                        <img class="cohort materialboxed" src="img/cohorts/${e}" alt="${altText}">
                     </li>`;
     });
     slideShow.append(imgsHTML);
