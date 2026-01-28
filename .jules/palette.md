@@ -1,0 +1,3 @@
+## 2024-10-24 - [Semantic Button Replacements]
+**Learning:** This codebase frequently uses `div` elements as buttons (e.g., `#nav-btn`) using jQuery click handlers, but consistently lacks `role="button"`, `tabindex="0"`, and `keydown` support for keyboard accessibility.
+**Action:** When identifying interaction points in this legacy jQuery codebase, immediately check for semantic correctness. If a `div` is used, enforce the "Button Triad" (role, tabindex, keydown handler) or refactor to `<button>`. Also, scrutinize `js/main.js` template literals for missing `aria-label` and `alt` attributes on dynamic content.
