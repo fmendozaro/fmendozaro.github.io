@@ -39,6 +39,7 @@
         href="#!"
         id="close-overlay"
         class="right btn-floating waves-effect waves-circle red"
+        aria-label="Close menu"
       >
         <i class="material-icons">close</i>
       </a>
@@ -47,7 +48,13 @@
     <!--Blackout for the PSOne effect-->
     <div id="blackout"></div>
 
-    <div id="nav-btn" class="menu-load col l12 hide-on-med-and-down z-depth-2">
+    <div
+      id="nav-btn"
+      class="menu-load col l12 hide-on-med-and-down z-depth-2"
+      role="button"
+      tabindex="0"
+      aria-label="Open menu"
+    >
       <p>Menu</p>
     </div>
 
@@ -129,12 +136,18 @@
             <div class="divider"></div>
           </li>
           <li>
-            <a href="https://linkedin.com/in/fmendozaro" target="_blank"
+            <a
+              href="https://linkedin.com/in/fmendozaro"
+              target="_blank"
+              rel="noopener noreferrer"
               ><i class="material-icons">work</i>LinkedIn</a
             >
           </li>
           <li>
-            <a href="https://github.com/fmendozaro" target="_blank"
+            <a
+              href="https://github.com/fmendozaro"
+              target="_blank"
+              rel="noopener noreferrer"
               ><i class="material-icons">code</i>Github</a
             >
           </li>
@@ -206,6 +219,7 @@
                 <a
                   href="https://graduation.udacity.com/confirm/UGGQF9HT"
                   target="_blank"
+                  rel="noopener noreferrer"
                   >Nanodegree</a
                 >
               </li>
@@ -331,6 +345,7 @@
               id="icon-one"
               href="https://github.com/fmendozaro"
               target="_blank"
+              rel="noopener noreferrer"
               ><img
                 src="img/github.png"
                 alt="Github"
@@ -340,6 +355,7 @@
               id="icon-two"
               href="https://www.linkedin.com/in/fmendozaro"
               target="_blank"
+              rel="noopener noreferrer"
               ><img
                 src="img/linkedin.png"
                 alt="LinkedIn"
@@ -359,6 +375,7 @@
         id="go-top"
         class="waves-effect waves-light blue darken-1 pulse btn btn-floating"
         href="#top-target"
+        aria-label="Scroll to top"
         ><i class="material-icons">arrow_upward</i></a
       >
 
