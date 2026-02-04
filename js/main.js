@@ -102,6 +102,14 @@ $(document).ready(function () {
         // $(".button-collapse").sideNav("show");
     });
 
+    // 🎨 Palette: Keyboard support for menu button
+    $("#nav-btn").on("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " " || e.keyCode === 13 || e.keyCode === 32) {
+            e.preventDefault();
+            $(this).click();
+        }
+    });
+
     $(".links").click(function (event) {
         $(".sidenav").sidenav("close");
         let $content = $("#content");
@@ -152,7 +160,7 @@ $(document).ready(function () {
                 <div class="card-image">
                     <img src="${el.imgUrl}">
                     <span class="card-title blue-text blue lighten-5"><strong>${el.name}</strong></span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank"><i class="material-icons">language</i></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank" aria-label="Visit ${el.name} website"><i class="material-icons">language</i></a>
                 </div>
                 <div class="card-content light-blue lighten-5">
                     <p>${el.description}</p>
@@ -185,8 +193,10 @@ $(document).ready(function () {
     // Load the cohorts
 
     PROPS.cohorts.forEach(function (e, i) {
+        // 🎨 Palette: Generate alt text from filename
+        let altText = e.replace(/\.[^/.]+$/, "");
         imgsHTML += `<li>
-                        <img class="cohort materialboxed" src="img/cohorts/${e}">
+                        <img class="cohort materialboxed" src="img/cohorts/${e}" alt="${altText}">
                     </li>`;
     });
     slideShow.append(imgsHTML);
