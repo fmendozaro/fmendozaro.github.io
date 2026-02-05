@@ -1,0 +1,3 @@
+## 2025-02-05 - [Large Image Optimization]
+**Learning:** The `img/cohorts/` and `img/projects/` directories contain significantly large images (e.g., Xanadu at 3.6MB, Wrangell at 2.7MB). Loading these eagerly, especially when they are in hidden sections (slideshows or hidden tabs), creates a massive bandwidth bottleneck on initial load.
+**Action:** Implement `loading="lazy"` for these images. This is a highly effective, low-effort optimization that defers loading until the user actually interacts with or scrolls to these elements. It is particularly crucial for Single Page Application (SPA) simulations where content is hidden by default but present in the DOM.
