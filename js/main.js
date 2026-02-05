@@ -102,6 +102,13 @@ $(document).ready(function () {
         // $(".button-collapse").sideNav("show");
     });
 
+    $("#nav-btn").keydown(function (e) {
+        if (e.keyCode === 13 || e.keyCode === 32) {
+            e.preventDefault();
+            $(this).trigger("click");
+        }
+    });
+
     $(".links").click(function (event) {
         $(".sidenav").sidenav("close");
         let $content = $("#content");
@@ -148,11 +155,12 @@ $(document).ready(function () {
 
     // Load projects section
     PROPS.projects.forEach(function (el, i) {
+        // 🎨 Palette: Added alt text and aria-label for accessibility
         cards += `<div class="card">
                 <div class="card-image">
-                    <img src="${el.imgUrl}">
+                    <img src="${el.imgUrl}" alt="${el.name}">
                     <span class="card-title blue-text blue lighten-5"><strong>${el.name}</strong></span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank"><i class="material-icons">language</i></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank" aria-label="Visit ${el.name} website"><i class="material-icons">language</i></a>
                 </div>
                 <div class="card-content light-blue lighten-5">
                     <p>${el.description}</p>
@@ -185,8 +193,10 @@ $(document).ready(function () {
     // Load the cohorts
 
     PROPS.cohorts.forEach(function (e, i) {
+        // 🎨 Palette: Generated alt text from filename
+        let altText = e.split('.')[0];
         imgsHTML += `<li>
-                        <img class="cohort materialboxed" src="img/cohorts/${e}">
+                        <img class="cohort materialboxed" src="img/cohorts/${e}" alt="${altText}">
                     </li>`;
     });
     slideShow.append(imgsHTML);
