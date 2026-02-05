@@ -1,0 +1,4 @@
+## 2026-02-05 - [Secure Mailer Reference]
+**Vulnerability:** The example mailer implementation contained hardcoded placeholder credentials and direct usage of `$_POST` variables in the email body, leading to potential XSS in email clients and credential leakage if copied.
+**Learning:** Even "example" files are often copied directly into production. They must follow strict security practices (input sanitization, environment variables) to prevent propagating vulnerabilities. Input to `PHPMailer` bodies must be sanitized (`htmlspecialchars`) as `isHTML(true)` allows script execution in some mail clients.
+**Prevention:** Ensure all reference implementations use `getenv()`/`$_ENV` for secrets and strictly sanitize all inputs using `filter_var` or `htmlspecialchars` before passing them to mailer functions.
