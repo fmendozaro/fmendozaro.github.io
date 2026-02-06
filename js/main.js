@@ -89,6 +89,13 @@ $(document).ready(function () {
         }
     });
 
+    $("#nav-btn").on('keydown', function(event){
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            $(this).click();
+        }
+    });
+
     $("#nav-btn").click(function () {
         $("#overlay").fadeIn();
 
@@ -150,9 +157,9 @@ $(document).ready(function () {
     PROPS.projects.forEach(function (el, i) {
         cards += `<div class="card">
                 <div class="card-image">
-                    <img src="${el.imgUrl}">
+                    <img src="${el.imgUrl}" alt="${el.name}">
                     <span class="card-title blue-text blue lighten-5"><strong>${el.name}</strong></span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank"><i class="material-icons">language</i></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank" aria-label="Visit ${el.name} website"><i class="material-icons">language</i></a>
                 </div>
                 <div class="card-content light-blue lighten-5">
                     <p>${el.description}</p>
@@ -185,8 +192,10 @@ $(document).ready(function () {
     // Load the cohorts
 
     PROPS.cohorts.forEach(function (e, i) {
+        let name = e.split('.')[0];
+        name = name.charAt(0).toUpperCase() + name.slice(1);
         imgsHTML += `<li>
-                        <img class="cohort materialboxed" src="img/cohorts/${e}">
+                        <img class="cohort materialboxed" src="img/cohorts/${e}" alt="${name} cohort">
                     </li>`;
     });
     slideShow.append(imgsHTML);
