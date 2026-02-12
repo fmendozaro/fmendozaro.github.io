@@ -147,10 +147,11 @@ $(document).ready(function () {
     });
 
     // Load projects section
+    // ⚡ Bolt: Lazy load dynamic project images
     PROPS.projects.forEach(function (el, i) {
         cards += `<div class="card">
                 <div class="card-image">
-                    <img src="${el.imgUrl}">
+                    <img loading="lazy" src="${el.imgUrl}">
                     <span class="card-title blue-text blue lighten-5"><strong>${el.name}</strong></span>
                     <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank"><i class="material-icons">language</i></a>
                 </div>
@@ -183,10 +184,10 @@ $(document).ready(function () {
     $('#teach-exp').text(today.getFullYear() - PROPS.generalExp.teach);
 
     // Load the cohorts
-
+    // ⚡ Bolt: Lazy load dynamic cohort images
     PROPS.cohorts.forEach(function (e, i) {
         imgsHTML += `<li>
-                        <img class="cohort materialboxed" src="img/cohorts/${e}">
+                        <img loading="lazy" class="cohort materialboxed" src="img/cohorts/${e}">
                     </li>`;
     });
     slideShow.append(imgsHTML);
