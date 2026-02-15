@@ -150,7 +150,8 @@ $(document).ready(function () {
     PROPS.projects.forEach(function (el, i) {
         cards += `<div class="card">
                 <div class="card-image">
-                    <img src="${el.imgUrl}">
+                    <!-- ⚡ Bolt: Lazy load project images -->
+                    <img src="${el.imgUrl}" loading="lazy">
                     <span class="card-title blue-text blue lighten-5"><strong>${el.name}</strong></span>
                     <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank"><i class="material-icons">language</i></a>
                 </div>
@@ -186,7 +187,8 @@ $(document).ready(function () {
 
     PROPS.cohorts.forEach(function (e, i) {
         imgsHTML += `<li>
-                        <img class="cohort materialboxed" src="img/cohorts/${e}">
+                        <!-- ⚡ Bolt: Lazy load cohort images -->
+                        <img class="cohort materialboxed" src="img/cohorts/${e}" loading="lazy">
                     </li>`;
     });
     slideShow.append(imgsHTML);
