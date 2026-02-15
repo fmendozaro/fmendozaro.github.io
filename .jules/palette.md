@@ -1,0 +1,3 @@
+## 2024-05-22 - Accessibility for Icon-Only Buttons
+**Learning:** Icon-only buttons (like FABs or menu triggers) are frequently used in Materialize-based designs but often lack accessible names, making them invisible or confusing to screen reader users. The "pulse" effect on the "go-top" button draws visual attention but offers no semantic clue to its purpose.
+**Action:** Always verify `aria-label` is present on elements with `.btn-floating` or `.sidenav-trigger` classes that contain only `<i class="material-icons">`. When generating DOM elements in JS, include `aria-label` in the template string.
