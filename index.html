@@ -39,6 +39,7 @@
         href="#!"
         id="close-overlay"
         class="right btn-floating waves-effect waves-circle red"
+        aria-label="Close menu"
       >
         <i class="material-icons">close</i>
       </a>
@@ -47,7 +48,12 @@
     <!--Blackout for the PSOne effect-->
     <div id="blackout"></div>
 
-    <div id="nav-btn" class="menu-load col l12 hide-on-med-and-down z-depth-2">
+    <div
+      id="nav-btn"
+      class="menu-load col l12 hide-on-med-and-down z-depth-2"
+      role="button"
+      tabindex="0"
+    >
       <p>Menu</p>
     </div>
 
@@ -92,7 +98,11 @@
         <a href="" class="brand-logo left hvr-wobble-skew">
           <i class="material-icons">home</i>
         </a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger right"
+        <a
+          href="#"
+          data-target="mobile-demo"
+          class="sidenav-trigger right"
+          aria-label="Open mobile menu"
           ><i class="material-icons">menu</i></a
         >
         <ul class="sidenav" id="mobile-demo">
@@ -359,6 +369,7 @@
         id="go-top"
         class="waves-effect waves-light blue darken-1 pulse btn btn-floating"
         href="#top-target"
+        aria-label="Scroll to top"
         ><i class="material-icons">arrow_upward</i></a
       >
 
