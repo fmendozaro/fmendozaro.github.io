@@ -1,0 +1,3 @@
+## 2024-03-25 - Native lazy loading for off-screen SPA elements
+**Learning:** This repository uses jQuery to mimic a Single Page Application by hiding and showing `div` sections. Large images (e.g., in the #projects or #experience sections) are effectively "below the fold" / "off-screen" until their sections are revealed. These images block initial load.
+**Action:** Used `loading="lazy"` on both static (in `index.html`) and dynamic (in `js/main.js`) images inside hidden DOM elements. Native lazy loading is supported even inside `.hide` or hidden sections, deferring the network requests to prevent initial load bottlenecks.

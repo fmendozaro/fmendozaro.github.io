@@ -147,12 +147,13 @@ $(document).ready(function () {
     });
 
     // Load projects section
+    // ⚡ Bolt: Native lazy loading prevents large off-screen project images from blocking initial load
     PROPS.projects.forEach(function (el, i) {
         cards += `<div class="card">
                 <div class="card-image">
-                    <img src="${el.imgUrl}">
+                    <img src="${el.imgUrl}" loading="lazy" alt="${el.name}">
                     <span class="card-title blue-text blue lighten-5"><strong>${el.name}</strong></span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank"><i class="material-icons">language</i></a>
+                    <a class="btn-floating halfway-fab waves-effect waves-light light-blue" href="${el.url}" target="_blank" aria-label="${el.name}"><i class="material-icons">language</i></a>
                 </div>
                 <div class="card-content light-blue lighten-5">
                     <p>${el.description}</p>
@@ -184,9 +185,11 @@ $(document).ready(function () {
 
     // Load the cohorts
 
+    // ⚡ Bolt: Lazy loading cohort images (~7MB total) prevents network bottleneck on load
     PROPS.cohorts.forEach(function (e, i) {
+        let altText = e.split('.')[0];
         imgsHTML += `<li>
-                        <img class="cohort materialboxed" src="img/cohorts/${e}">
+                        <img class="cohort materialboxed" src="img/cohorts/${e}" loading="lazy" alt="${altText}">
                     </li>`;
     });
     slideShow.append(imgsHTML);
