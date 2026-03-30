@@ -15,7 +15,7 @@ $(document).ready(function () {
         $(temp).trigger("click");
     }
 
-    let div_loading_progress = $(".div_loading_progress");
+    // ⚡ Bolt: Removed unused O(N) DOM query for non-existent element 'div_loading_progress'
     let konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65], n = 0;
     let konamiExecuted = false;
     let cardsDiv = $("#cards");
@@ -79,7 +79,7 @@ $(document).ready(function () {
 
     $(document).keyup(function (e) {
         //ESC
-        console.log(e.keyCode);
+        // ⚡ Bolt: Removed synchronous console.log on global keyup to prevent main thread blocking
         if (e.keyCode === 27) {
             if (!konamiExecuted) {
                 closeOverlay();
@@ -102,9 +102,11 @@ $(document).ready(function () {
         // $(".button-collapse").sideNav("show");
     });
 
+    // ⚡ Bolt: Cache DOM elements that don't change to avoid O(N) queries on every click
+    let $content = $("#content");
+
     $(".links").click(function (event) {
         $(".sidenav").sidenav("close");
-        let $content = $("#content");
         let targetText = "#" + $(this).data("target");
         let targetDiv = $(targetText);
 
@@ -175,7 +177,7 @@ $(document).ready(function () {
     let experienceHtml = "";
     shuffled.forEach(function (e) {
         let lang = e.lang.toUpperCase();
-        let years = (new Date()).getFullYear() - e.year;
+        // ⚡ Bolt: Removed unused date calculation to avoid redundant object instantiation in loop
         experienceHtml += `<span class="letter" data-letter="${lang}">${lang}</span>`;
     });
     $('.experience-hub').append(experienceHtml);
