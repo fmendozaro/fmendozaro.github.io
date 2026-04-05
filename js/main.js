@@ -23,21 +23,28 @@ $(document).ready(function () {
     let today = new Date();
     let slideShow = $('#slideshow');
 
+    // ⚡ Bolt: Cache static jQuery DOM elements to prevent redundant O(N) DOM traversals on user interaction
+    let $content = $("#content");
+    let $overlay = $("#overlay");
+    let $navBtn = $("#nav-btn");
+    let $mainMenu = $(".main-menu");
+    let $sidenav = $(".sidenav");
+
     $('.modal').modal();
-    $(".sidenav").sidenav({edge: "right"});
+    $sidenav.sidenav({edge: "right"});
     // M.fadeInImage("#content");
     // M.fadeInImage('#logo');
     // $('.tap-target').tapTarget("open").tapTarget("close");
 
     function closeOverlay() {
         shrinkMenu();
-        $("#overlay").fadeOut();
-        $("#nav-btn").removeClass("menu-intro").addClass("menu-outro");
-        $(".main-menu").fadeOut("menu-outro");
+        $overlay.fadeOut();
+        $navBtn.removeClass("menu-intro").addClass("menu-outro");
+        $mainMenu.fadeOut("menu-outro");
     }
 
     function shrinkMenu() {
-        $(".main-menu").animate({
+        $mainMenu.animate({
             height: 0,
             width: 0,
             top: '50%',
@@ -50,7 +57,7 @@ $(document).ready(function () {
     function growMenu() {
         // Desktop & iPad
         // let width = (screen.width > 1024) ? wFit : "35.5%";
-        $(".main-menu").animate({
+        $mainMenu.animate({
             height: 300,
             width: 300,
             top: '50%',
@@ -89,22 +96,21 @@ $(document).ready(function () {
         }
     });
 
-    $("#nav-btn").click(function () {
-        $("#overlay").fadeIn();
+    $navBtn.click(function () {
+        $overlay.fadeIn();
 
         setTimeout(function () {
             growMenu();
         }, 1000);
 
-        $(".main-menu").fadeIn().removeClass("hide");
-        $("#nav-btn").removeClass("menu-load menu-outro").addClass("menu-intro");
+        $mainMenu.fadeIn().removeClass("hide");
+        $navBtn.removeClass("menu-load menu-outro").addClass("menu-intro");
         $("#nav-wrapper").removeClass("hide-on-large-only");
         // $(".button-collapse").sideNav("show");
     });
 
     $(".links").click(function (event) {
-        $(".sidenav").sidenav("close");
-        let $content = $("#content");
+        $sidenav.sidenav("close");
         let targetText = "#" + $(this).data("target");
         let targetDiv = $(targetText);
 
@@ -175,7 +181,6 @@ $(document).ready(function () {
     let experienceHtml = "";
     shuffled.forEach(function (e) {
         let lang = e.lang.toUpperCase();
-        let years = (new Date()).getFullYear() - e.year;
         experienceHtml += `<span class="letter" data-letter="${lang}">${lang}</span>`;
     });
     $('.experience-hub').append(experienceHtml);
