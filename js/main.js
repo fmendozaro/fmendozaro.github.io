@@ -23,6 +23,9 @@ $(document).ready(function () {
     let today = new Date();
     let slideShow = $('#slideshow');
 
+    // ⚡ Bolt: Cache static DOM queries to avoid redundant O(N) DOM queries on user interaction
+    let $content = $("#content");
+
     $('.modal').modal();
     $(".sidenav").sidenav({edge: "right"});
     // M.fadeInImage("#content");
@@ -79,7 +82,6 @@ $(document).ready(function () {
 
     $(document).keyup(function (e) {
         //ESC
-        console.log(e.keyCode);
         if (e.keyCode === 27) {
             if (!konamiExecuted) {
                 closeOverlay();
@@ -104,7 +106,6 @@ $(document).ready(function () {
 
     $(".links").click(function (event) {
         $(".sidenav").sidenav("close");
-        let $content = $("#content");
         let targetText = "#" + $(this).data("target");
         let targetDiv = $(targetText);
 
@@ -175,7 +176,6 @@ $(document).ready(function () {
     let experienceHtml = "";
     shuffled.forEach(function (e) {
         let lang = e.lang.toUpperCase();
-        let years = (new Date()).getFullYear() - e.year;
         experienceHtml += `<span class="letter" data-letter="${lang}">${lang}</span>`;
     });
     $('.experience-hub').append(experienceHtml);
