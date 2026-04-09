@@ -102,9 +102,11 @@ $(document).ready(function () {
         // $(".button-collapse").sideNav("show");
     });
 
+    // ⚡ Bolt: Cache DOM queries outside event handlers to avoid O(N) operations
+    let $content = $("#content");
+
     $(".links").click(function (event) {
         $(".sidenav").sidenav("close");
-        let $content = $("#content");
         let targetText = "#" + $(this).data("target");
         let targetDiv = $(targetText);
 
@@ -175,7 +177,7 @@ $(document).ready(function () {
     let experienceHtml = "";
     shuffled.forEach(function (e) {
         let lang = e.lang.toUpperCase();
-        let years = (new Date()).getFullYear() - e.year;
+        // ⚡ Bolt: Removed redundant date instantiations in loop
         experienceHtml += `<span class="letter" data-letter="${lang}">${lang}</span>`;
     });
     $('.experience-hub').append(experienceHtml);
