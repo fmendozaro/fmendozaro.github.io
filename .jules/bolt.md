@@ -1,3 +1,6 @@
 ## 2024-03-25 - [Lazy Loading Hidden SPA Sections]
 **Learning:** The application simulates a Single Page Application by rendering all sections (like `#projects`, `#experience`) immediately on `$(document).ready` but keeping them visually hidden using CSS (`.hide`). This causes the browser to download all large images (e.g., 3MB cohort images) on initial page load, blocking the main thread and wasting bandwidth for content the user hasn't requested.
 **Action:** Always apply `loading="lazy"` to images within hidden SPA sections or dynamically generated content that is not immediately visible. This defers the network request until the section is displayed.
+## 2024-05-23 - [Remove unused loop variables]
+**Learning:** Found an unused `years` variable calculation (`new Date().getFullYear() - e.year`) inside the `PROPS.experience` rendering loop. Instantiating `new Date()` is relatively slow, and doing it redundantly inside a loop without utilizing the result wastes CPU cycles.
+**Action:** Always verify that variables calculated inside loops are actually used. If they are dead code, remove them immediately, especially if they involve object instantiation like `new Date()`, to avoid unnecessary overhead and garbage collection.
