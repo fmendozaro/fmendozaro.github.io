@@ -1,3 +1,6 @@
 ## 2024-03-25 - [Lazy Loading Hidden SPA Sections]
 **Learning:** The application simulates a Single Page Application by rendering all sections (like `#projects`, `#experience`) immediately on `$(document).ready` but keeping them visually hidden using CSS (`.hide`). This causes the browser to download all large images (e.g., 3MB cohort images) on initial page load, blocking the main thread and wasting bandwidth for content the user hasn't requested.
 **Action:** Always apply `loading="lazy"` to images within hidden SPA sections or dynamically generated content that is not immediately visible. This defers the network request until the section is displayed.
+## 2024-05-18 - [Redundant Object Instantiation in Loops]
+**Learning:** `js/main.js` was instantiating `new Date()` redundantly inside the `PROPS.experience` mapping loop to calculate an unused `years` variable. In a JavaScript environment, recreating objects like `Date` inside loops is a classic micro-anti-pattern that wastes CPU cycles and creates unnecessary garbage collection overhead.
+**Action:** Always verify if variables declared inside loops are actually used. If they are used, check if the computation can be hoisted outside the loop (like instantiating `let today = new Date()` once). If they are unused, completely remove them to eliminate dead code and unnecessary object allocation overhead.
