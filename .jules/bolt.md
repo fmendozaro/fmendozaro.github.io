@@ -1,3 +1,6 @@
 ## 2024-03-25 - [Lazy Loading Hidden SPA Sections]
 **Learning:** The application simulates a Single Page Application by rendering all sections (like `#projects`, `#experience`) immediately on `$(document).ready` but keeping them visually hidden using CSS (`.hide`). This causes the browser to download all large images (e.g., 3MB cohort images) on initial page load, blocking the main thread and wasting bandwidth for content the user hasn't requested.
 **Action:** Always apply `loading="lazy"` to images within hidden SPA sections or dynamically generated content that is not immediately visible. This defers the network request until the section is displayed.
+## 2024-04-15 - [Loop Object Allocation Bottlenecks]
+**Learning:** Redundant instantiations of standard objects, such as `new Date()`, inside high-frequency loops cause unnecessary memory allocations and strain garbage collection. Even in seemingly small loops, like iterating over a brief experience array, hoisting the constant instantiation out of the loop block, or removing it if the instantiated object is unused, visibly improves execution consistency and reduces execution time.
+**Action:** When inspecting loops (e.g., `forEach`, `map`), always check for variable declarations and object instantiations that evaluate to the same value on every iteration or are completely unused, and remove or hoist them.
