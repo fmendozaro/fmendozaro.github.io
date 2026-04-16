@@ -79,7 +79,6 @@ $(document).ready(function () {
 
     $(document).keyup(function (e) {
         //ESC
-        console.log(e.keyCode);
         if (e.keyCode === 27) {
             if (!konamiExecuted) {
                 closeOverlay();
@@ -102,9 +101,11 @@ $(document).ready(function () {
         // $(".button-collapse").sideNav("show");
     });
 
+    // ⚡ Bolt: Cache static container elements outside event handlers to avoid redundant O(N) DOM queries
+    let $content = $("#content");
+
     $(".links").click(function (event) {
         $(".sidenav").sidenav("close");
-        let $content = $("#content");
         let targetText = "#" + $(this).data("target");
         let targetDiv = $(targetText);
 
@@ -175,7 +176,6 @@ $(document).ready(function () {
     let experienceHtml = "";
     shuffled.forEach(function (e) {
         let lang = e.lang.toUpperCase();
-        let years = (new Date()).getFullYear() - e.year;
         experienceHtml += `<span class="letter" data-letter="${lang}">${lang}</span>`;
     });
     $('.experience-hub').append(experienceHtml);
