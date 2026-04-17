@@ -22,6 +22,7 @@ $(document).ready(function () {
     let cards = "", imgsHTML = "";
     let today = new Date();
     let slideShow = $('#slideshow');
+    let $content = $("#content"); // ⚡ Bolt: Cache DOM query
 
     $('.modal').modal();
     $(".sidenav").sidenav({edge: "right"});
@@ -104,7 +105,7 @@ $(document).ready(function () {
 
     $(".links").click(function (event) {
         $(".sidenav").sidenav("close");
-        let $content = $("#content");
+        // $content is cached above
         let targetText = "#" + $(this).data("target");
         let targetDiv = $(targetText);
 
@@ -175,7 +176,7 @@ $(document).ready(function () {
     let experienceHtml = "";
     shuffled.forEach(function (e) {
         let lang = e.lang.toUpperCase();
-        let years = (new Date()).getFullYear() - e.year;
+        // ⚡ Bolt: Removed redundant and unused new Date() instantiation
         experienceHtml += `<span class="letter" data-letter="${lang}">${lang}</span>`;
     });
     $('.experience-hub').append(experienceHtml);
