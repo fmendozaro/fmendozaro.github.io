@@ -10,7 +10,6 @@ $(document).ready(function () {
     let searchParams = new URLSearchParams(window.location.search)
     let param = searchParams.get('page')
     if (param != null) {
-        console.log(`#${param}-link`);
         let temp = `#${param}-link`;
         $(temp).trigger("click");
     }
@@ -22,6 +21,9 @@ $(document).ready(function () {
     let cards = "", imgsHTML = "";
     let today = new Date();
     let slideShow = $('#slideshow');
+
+    // ⚡ Bolt: Cache DOM queries to avoid redundant O(N) lookups
+    let $content = $("#content");
 
     $('.modal').modal();
     $(".sidenav").sidenav({edge: "right"});
@@ -79,7 +81,6 @@ $(document).ready(function () {
 
     $(document).keyup(function (e) {
         //ESC
-        console.log(e.keyCode);
         if (e.keyCode === 27) {
             if (!konamiExecuted) {
                 closeOverlay();
@@ -104,12 +105,10 @@ $(document).ready(function () {
 
     $(".links").click(function (event) {
         $(".sidenav").sidenav("close");
-        let $content = $("#content");
         let targetText = "#" + $(this).data("target");
         let targetDiv = $(targetText);
 
         if (targetText === "#contact") {
-            console.log($(this).children("a"));
             $(this).children("a")[0].click();
         } else {
             $content.html($(targetDiv).html());
@@ -175,7 +174,7 @@ $(document).ready(function () {
     let experienceHtml = "";
     shuffled.forEach(function (e) {
         let lang = e.lang.toUpperCase();
-        let years = (new Date()).getFullYear() - e.year;
+        // ⚡ Bolt: Removed redundant `new Date()` inside loop and unused `years` variable
         experienceHtml += `<span class="letter" data-letter="${lang}">${lang}</span>`;
     });
     $('.experience-hub').append(experienceHtml);
