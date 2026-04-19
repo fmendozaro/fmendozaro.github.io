@@ -79,7 +79,7 @@ $(document).ready(function () {
 
     $(document).keyup(function (e) {
         //ESC
-        console.log(e.keyCode);
+        // ⚡ Bolt: Removed synchronous console.log from global event listener to prevent main thread blocking
         if (e.keyCode === 27) {
             if (!konamiExecuted) {
                 closeOverlay();
@@ -102,9 +102,11 @@ $(document).ready(function () {
         // $(".button-collapse").sideNav("show");
     });
 
+    // ⚡ Bolt: Cache static DOM container outside event handlers to prevent O(N) query repeats on navigation
+    let $content = $("#content");
+
     $(".links").click(function (event) {
         $(".sidenav").sidenav("close");
-        let $content = $("#content");
         let targetText = "#" + $(this).data("target");
         let targetDiv = $(targetText);
 
@@ -175,7 +177,7 @@ $(document).ready(function () {
     let experienceHtml = "";
     shuffled.forEach(function (e) {
         let lang = e.lang.toUpperCase();
-        let years = (new Date()).getFullYear() - e.year;
+        // ⚡ Bolt: Removed unused new Date() instantiation inside loop to reduce redundant calculations
         experienceHtml += `<span class="letter" data-letter="${lang}">${lang}</span>`;
     });
     $('.experience-hub').append(experienceHtml);
