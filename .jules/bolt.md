@@ -1,3 +1,7 @@
 ## 2024-03-25 - [Lazy Loading Hidden SPA Sections]
 **Learning:** The application simulates a Single Page Application by rendering all sections (like `#projects`, `#experience`) immediately on `$(document).ready` but keeping them visually hidden using CSS (`.hide`). This causes the browser to download all large images (e.g., 3MB cohort images) on initial page load, blocking the main thread and wasting bandwidth for content the user hasn't requested.
 **Action:** Always apply `loading="lazy"` to images within hidden SPA sections or dynamically generated content that is not immediately visible. This defers the network request until the section is displayed.
+
+## 2024-04-19 - [JS Performance: Event Handlers and Loops]
+**Learning:** In a single-page application heavily relying on jQuery event handlers and DOM manipulation, querying static elements repeatedly inside event listeners (like `$content = $('#content')`) adds unnecessary O(N) DOM lookup overhead on every user interaction. Additionally, doing expensive synchronous calculations inside loops (like `new Date()` for calculating years) that aren't even used, significantly impacts rendering times, especially when generating long lists of DOM strings.
+**Action:** Always cache static container elements outside of event listeners. Before adding expensive synchronous operations to array iteration or global listeners, verify they are actually used, and avoid `new Date()` inside loops when the value can be computed once outside or is dead code.
