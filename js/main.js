@@ -174,8 +174,8 @@ $(document).ready(function () {
     // ⚡ Bolt: Batch DOM updates to minimize reflows/repaints (O(n) -> O(1) DOM operations)
     let experienceHtml = "";
     shuffled.forEach(function (e) {
+        // ⚡ Bolt: removed redundant Date object instantiation
         let lang = e.lang.toUpperCase();
-        let years = (new Date()).getFullYear() - e.year;
         experienceHtml += `<span class="letter" data-letter="${lang}">${lang}</span>`;
     });
     $('.experience-hub').append(experienceHtml);
