@@ -22,9 +22,12 @@ $(document).ready(function () {
     let cards = "", imgsHTML = "";
     let today = new Date();
     let slideShow = $('#slideshow');
+    // ⚡ Bolt: Cache static elements outside event listeners
+    let $content = $("#content");
+    let $sidenav = $(".sidenav");
 
     $('.modal').modal();
-    $(".sidenav").sidenav({edge: "right"});
+    $sidenav.sidenav({edge: "right"});
     // M.fadeInImage("#content");
     // M.fadeInImage('#logo');
     // $('.tap-target').tapTarget("open").tapTarget("close");
@@ -79,7 +82,6 @@ $(document).ready(function () {
 
     $(document).keyup(function (e) {
         //ESC
-        console.log(e.keyCode);
         if (e.keyCode === 27) {
             if (!konamiExecuted) {
                 closeOverlay();
@@ -103,8 +105,7 @@ $(document).ready(function () {
     });
 
     $(".links").click(function (event) {
-        $(".sidenav").sidenav("close");
-        let $content = $("#content");
+        $sidenav.sidenav("close");
         let targetText = "#" + $(this).data("target");
         let targetDiv = $(targetText);
 
@@ -175,7 +176,6 @@ $(document).ready(function () {
     let experienceHtml = "";
     shuffled.forEach(function (e) {
         let lang = e.lang.toUpperCase();
-        let years = (new Date()).getFullYear() - e.year;
         experienceHtml += `<span class="letter" data-letter="${lang}">${lang}</span>`;
     });
     $('.experience-hub').append(experienceHtml);
