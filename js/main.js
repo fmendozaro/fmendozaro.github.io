@@ -175,7 +175,6 @@ $(document).ready(function () {
     let experienceHtml = "";
     shuffled.forEach(function (e) {
         let lang = e.lang.toUpperCase();
-        let years = (new Date()).getFullYear() - e.year;
         experienceHtml += `<span class="letter" data-letter="${lang}">${lang}</span>`;
     });
     $('.experience-hub').append(experienceHtml);
