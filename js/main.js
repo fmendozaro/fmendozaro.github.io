@@ -172,10 +172,10 @@ $(document).ready(function () {
         .map((a) => a.value);
 
     // ⚡ Bolt: Batch DOM updates to minimize reflows/repaints (O(n) -> O(1) DOM operations)
+    // ⚡ Bolt: Removed unused redundant new Date() object instantiation within the loop
     let experienceHtml = "";
     shuffled.forEach(function (e) {
         let lang = e.lang.toUpperCase();
-        let years = (new Date()).getFullYear() - e.year;
         experienceHtml += `<span class="letter" data-letter="${lang}">${lang}</span>`;
     });
     $('.experience-hub').append(experienceHtml);
