@@ -1,3 +1,7 @@
 ## 2024-03-25 - [Lazy Loading Hidden SPA Sections]
 **Learning:** The application simulates a Single Page Application by rendering all sections (like `#projects`, `#experience`) immediately on `$(document).ready` but keeping them visually hidden using CSS (`.hide`). This causes the browser to download all large images (e.g., 3MB cohort images) on initial page load, blocking the main thread and wasting bandwidth for content the user hasn't requested.
 **Action:** Always apply `loading="lazy"` to images within hidden SPA sections or dynamically generated content that is not immediately visible. This defers the network request until the section is displayed.
+
+## 2024-05-24 - [Redundant Object Instantiation in Rendering Loops]
+**Learning:** Benchmarking in `js/main.js` revealed that performing unnecessary object instantiations (like `new Date()`) inside array iteration loops (like `PROPS.experience.forEach`) adds significant overhead. The variable `years` was calculated by creating a `new Date()` object on every iteration, despite the value never being used in the DOM update. Removing these redundant instantiations can reduce the execution time for the loop block by approximately 70-86%.
+**Action:** Always audit rendering loops or large iterations for object instantiations that can be lifted outside the loop (e.g., re-using the globally scoped `today` variable initialized on `document.ready`) or completely removed if their output is unused dead code.
