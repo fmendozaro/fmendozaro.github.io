@@ -60,6 +60,9 @@ $(document).ready(function () {
         });
     }
 
+    // ⚡ Bolt: Cache static container elements to avoid redundant O(N) DOM queries
+    let $content = $("#content");
+
     // Event handlers
 
     // KONAMI KODE
@@ -79,7 +82,6 @@ $(document).ready(function () {
 
     $(document).keyup(function (e) {
         //ESC
-        console.log(e.keyCode);
         if (e.keyCode === 27) {
             if (!konamiExecuted) {
                 closeOverlay();
@@ -104,12 +106,10 @@ $(document).ready(function () {
 
     $(".links").click(function (event) {
         $(".sidenav").sidenav("close");
-        let $content = $("#content");
         let targetText = "#" + $(this).data("target");
         let targetDiv = $(targetText);
 
         if (targetText === "#contact") {
-            console.log($(this).children("a"));
             $(this).children("a")[0].click();
         } else {
             $content.html($(targetDiv).html());
@@ -175,7 +175,6 @@ $(document).ready(function () {
     let experienceHtml = "";
     shuffled.forEach(function (e) {
         let lang = e.lang.toUpperCase();
-        let years = (new Date()).getFullYear() - e.year;
         experienceHtml += `<span class="letter" data-letter="${lang}">${lang}</span>`;
     });
     $('.experience-hub').append(experienceHtml);
