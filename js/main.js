@@ -23,6 +23,11 @@ $(document).ready(function () {
     let today = new Date();
     let slideShow = $('#slideshow');
 
+    // ⚡ Bolt: Cache static DOM elements to avoid redundant O(N) queries during interaction
+    let $overlay = $("#overlay");
+    let $navBtn = $("#nav-btn");
+    let $mainMenu = $(".main-menu");
+
     $('.modal').modal();
     $(".sidenav").sidenav({edge: "right"});
     // M.fadeInImage("#content");
@@ -31,13 +36,13 @@ $(document).ready(function () {
 
     function closeOverlay() {
         shrinkMenu();
-        $("#overlay").fadeOut();
-        $("#nav-btn").removeClass("menu-intro").addClass("menu-outro");
-        $(".main-menu").fadeOut("menu-outro");
+        $overlay.fadeOut();
+        $navBtn.removeClass("menu-intro").addClass("menu-outro");
+        $mainMenu.fadeOut("menu-outro");
     }
 
     function shrinkMenu() {
-        $(".main-menu").animate({
+        $mainMenu.animate({
             height: 0,
             width: 0,
             top: '50%',
@@ -50,7 +55,7 @@ $(document).ready(function () {
     function growMenu() {
         // Desktop & iPad
         // let width = (screen.width > 1024) ? wFit : "35.5%";
-        $(".main-menu").animate({
+        $mainMenu.animate({
             height: 300,
             width: 300,
             top: '50%',
@@ -89,15 +94,15 @@ $(document).ready(function () {
         }
     });
 
-    $("#nav-btn").click(function () {
-        $("#overlay").fadeIn();
+    $navBtn.click(function () {
+        $overlay.fadeIn();
 
         setTimeout(function () {
             growMenu();
         }, 1000);
 
-        $(".main-menu").fadeIn().removeClass("hide");
-        $("#nav-btn").removeClass("menu-load menu-outro").addClass("menu-intro");
+        $mainMenu.fadeIn().removeClass("hide");
+        $navBtn.removeClass("menu-load menu-outro").addClass("menu-intro");
         $("#nav-wrapper").removeClass("hide-on-large-only");
         // $(".button-collapse").sideNav("show");
     });
