@@ -5,3 +5,6 @@
 ## 2026-05-14 - [Redundant Object Instantiation in Loops]
 **Learning:** `new Date()` is relatively expensive to call repeatedly. If the data isn't actively being used or displayed, and it's calculated in a loop that runs multiple times (like the experience hubs loop), it wastes execution time. The `years` variable calculation was unused dead code in this loop.
 **Action:** Always review operations inside loops, specifically object instantiations like `new Date()`. Remove unused calculations, and if they are used, evaluate if they can be cached outside the loop or if they genuinely need recalculation each iteration.
+## 2026-05-17 - [Cache Static DOM Queries Outside Event Handlers]
+**Learning:** In a jQuery-based Single Page Application (SPA), querying the DOM for static elements (like `$('#content')`) inside event handlers (like `click`) causes redundant function calls and memory allocations on every user interaction.
+**Action:** Always declare and cache static DOM selections outside of event handlers (e.g., at the top of the `$(document).ready()` block) to prevent repeated lookups and improve responsiveness.
