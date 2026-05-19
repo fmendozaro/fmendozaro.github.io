@@ -22,6 +22,8 @@ $(document).ready(function () {
     let cards = "", imgsHTML = "";
     let today = new Date();
     let slideShow = $('#slideshow');
+    // ⚡ Bolt: Cache static container elements outside of event handlers to avoid redundant O(N) DOM queries
+    let $content = $("#content");
 
     $('.modal').modal();
     $(".sidenav").sidenav({edge: "right"});
@@ -104,7 +106,6 @@ $(document).ready(function () {
 
     $(".links").click(function (event) {
         $(".sidenav").sidenav("close");
-        let $content = $("#content");
         let targetText = "#" + $(this).data("target");
         let targetDiv = $(targetText);
 
