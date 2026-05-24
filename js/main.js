@@ -10,7 +10,6 @@ $(document).ready(function () {
     let searchParams = new URLSearchParams(window.location.search)
     let param = searchParams.get('page')
     if (param != null) {
-        console.log(`#${param}-link`);
         let temp = `#${param}-link`;
         $(temp).trigger("click");
     }
@@ -79,7 +78,7 @@ $(document).ready(function () {
 
     $(document).keyup(function (e) {
         //ESC
-        console.log(e.keyCode);
+        // ⚡ Bolt: Removed synchronous console.log to prevent main thread blocking
         if (e.keyCode === 27) {
             if (!konamiExecuted) {
                 closeOverlay();
@@ -109,7 +108,6 @@ $(document).ready(function () {
         let targetDiv = $(targetText);
 
         if (targetText === "#contact") {
-            console.log($(this).children("a"));
             $(this).children("a")[0].click();
         } else {
             $content.html($(targetDiv).html());
