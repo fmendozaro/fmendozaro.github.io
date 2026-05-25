@@ -79,7 +79,7 @@ $(document).ready(function () {
 
     $(document).keyup(function (e) {
         //ESC
-        console.log(e.keyCode);
+        // ⚡ Bolt: Removed synchronous console.log from global event listener to prevent main thread blocking
         if (e.keyCode === 27) {
             if (!konamiExecuted) {
                 closeOverlay();
