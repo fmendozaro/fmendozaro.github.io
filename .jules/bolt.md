@@ -5,3 +5,7 @@
 ## 2026-05-14 - [Redundant Object Instantiation in Loops]
 **Learning:** `new Date()` is relatively expensive to call repeatedly. If the data isn't actively being used or displayed, and it's calculated in a loop that runs multiple times (like the experience hubs loop), it wastes execution time. The `years` variable calculation was unused dead code in this loop.
 **Action:** Always review operations inside loops, specifically object instantiations like `new Date()`. Remove unused calculations, and if they are used, evaluate if they can be cached outside the loop or if they genuinely need recalculation each iteration.
+
+## 2024-05-14 - [Synchronous Logging in Global Event Listeners]
+**Learning:** The application contained synchronous `console.log` statements inside high-frequency global event listeners like `$(document).keyup` which fired on every single keystroke. This blocks the main thread and can cause input latency, degrading perceived performance.
+**Action:** Never place synchronous logging inside global event listeners (keyup, scroll, mousemove) intended for production code unless strictly necessary for intentional output (like the Konami code success message), as it unnecessarily taxes the main thread.
