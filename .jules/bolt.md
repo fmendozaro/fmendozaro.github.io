@@ -5,3 +5,7 @@
 ## 2026-05-14 - [Redundant Object Instantiation in Loops]
 **Learning:** `new Date()` is relatively expensive to call repeatedly. If the data isn't actively being used or displayed, and it's calculated in a loop that runs multiple times (like the experience hubs loop), it wastes execution time. The `years` variable calculation was unused dead code in this loop.
 **Action:** Always review operations inside loops, specifically object instantiations like `new Date()`. Remove unused calculations, and if they are used, evaluate if they can be cached outside the loop or if they genuinely need recalculation each iteration.
+
+## 2024-03-27 - [Preconnect Resource Hints for CDNs]
+**Learning:** The application heavily relies on external CDN assets (e.g., Materialize CSS/JS, Google Fonts, Google Analytics). The browser must perform DNS resolution, TCP handshake, and TLS negotiation for each origin before downloading these critical resources, which delays initial rendering.
+**Action:** Always add `<link rel="preconnect">` tags in the `<head>` for essential, third-party domains. For origins providing fonts (like `fonts.gstatic.com`), ensure the `crossorigin` attribute is included to establish the correct connection type.
