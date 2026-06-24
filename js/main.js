@@ -166,10 +166,14 @@ $(document).ready(function () {
 
     cardsDiv.append(cards);
 
-    let shuffled = PROPS.experience
-        .map((a) => ({sort: Math.random(), value: a}))
-        .sort((a, b) => a.sort - b.sort)
-        .map((a) => a.value);
+    // ⚡ Bolt: Replace inefficient map().sort().map() chain with Fisher-Yates shuffle (O(n log n) -> O(n))
+    let shuffled = [...PROPS.experience];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        let temp = shuffled[i];
+        shuffled[i] = shuffled[j];
+        shuffled[j] = temp;
+    }
 
     // ⚡ Bolt: Batch DOM updates to minimize reflows/repaints (O(n) -> O(1) DOM operations)
     let experienceHtml = "";
