@@ -5,3 +5,7 @@
 ## 2026-05-14 - [Redundant Object Instantiation in Loops]
 **Learning:** `new Date()` is relatively expensive to call repeatedly. If the data isn't actively being used or displayed, and it's calculated in a loop that runs multiple times (like the experience hubs loop), it wastes execution time. The `years` variable calculation was unused dead code in this loop.
 **Action:** Always review operations inside loops, specifically object instantiations like `new Date()`. Remove unused calculations, and if they are used, evaluate if they can be cached outside the loop or if they genuinely need recalculation each iteration.
+
+## 2024-06-03 - [Inefficient Array Shuffling Pattern]
+**Learning:** The previous array shuffling implementation (`.map().sort().map()`) operated in O(n log n) time and created multiple intermediate arrays and objects, triggering unnecessary garbage collection overhead.
+**Action:** Always use the Fisher-Yates algorithm for O(n) in-place array shuffling to minimize memory allocations and CPU overhead, especially on the client side.
