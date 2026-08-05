@@ -9,3 +9,7 @@
 ## 2024-05-20 - [Avoid map().sort().map() for array shuffling]
 **Learning:** Using chained `.map().sort().map()` calls with `Math.random()` to shuffle arrays introduces O(n log n) overhead, creates unnecessary intermediate array allocations, and has inherent statistical bias.
 **Action:** Use the O(n) in-place Fisher-Yates algorithm for shuffling arrays. Always clone the source array first (e.g., `[...array]`) to prevent unintended mutation.
+
+## 2024-05-24 - [Preconnect for External Assets]
+**Learning:** The application heavily relies on external CDN assets (Materialize CSS/JS, Google Fonts, Google Analytics). Without preconnecting, the browser waits until these resources are discovered during HTML parsing to initiate DNS resolution and TCP/TLS handshakes, delaying the critical rendering path.
+**Action:** Always include `<link rel="preconnect">` tags for critical external origins (with `crossorigin` for font domains like fonts.gstatic.com) early in the `<head>` to front-load connection setup.
