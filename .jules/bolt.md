@@ -9,3 +9,7 @@
 ## 2024-05-20 - [Avoid map().sort().map() for array shuffling]
 **Learning:** Using chained `.map().sort().map()` calls with `Math.random()` to shuffle arrays introduces O(n log n) overhead, creates unnecessary intermediate array allocations, and has inherent statistical bias.
 **Action:** Use the O(n) in-place Fisher-Yates algorithm for shuffling arrays. Always clone the source array first (e.g., `[...array]`) to prevent unintended mutation.
+
+## 2024-06-03 - [Preconnect External CDNs]
+**Learning:** To improve initial load performance by accelerating DNS resolution, TCP handshake, and TLS negotiation, always include `<link rel="preconnect">` tags in `index.html` for external CDN assets (e.g., Google Fonts, Cloudflare, Google Tag Manager). Ensure the `crossorigin` attribute is included for font origins like `fonts.gstatic.com`.
+**Action:** Add `<link rel="preconnect" href="...">` tags for critical external origins to reduce connection latency and improve page load time.
