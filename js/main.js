@@ -89,6 +89,13 @@ $(document).ready(function () {
         }
     });
 
+    $("#nav-btn").on('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            $(this).click();
+        }
+    });
+
     $("#nav-btn").click(function () {
         $("#overlay").fadeIn();
 
