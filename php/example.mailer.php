@@ -3,34 +3,54 @@ require '../vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
 
 $mail = new PHPMailer;
 
-$from = $_POST["email"];
-$name = $_POST["fullName"];
-$msg = $_POST["message"];
-$subject = $_POST["subject"];
+// ⚡ Bolt: Security - Input validation and sanitization
+// Use filter_var with $_POST to allow testing in CLI and standard validation
+$from = filter_var($_POST['email'] ?? '', FILTER_VALIDATE_EMAIL);
+$name = filter_var($_POST['fullName'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
+// Prevent XSS in email body
+$msg = filter_var($_POST['message'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
+$subject = filter_var($_POST['subject'] ?? '', FILTER_SANITIZE_SPECIAL_CHARS);
 
 $msgObj = new stdClass();
 
-//    $mail->SMTPDebug = 1;                               // Enable verbose debug output
+if (!$from || !$msg || !$subject) {
+    $msgObj->msg = 'Invalid input provided.';
+    header('Content-Type: application/json');
+    echo json_encode($msgObj);
+    exit;
+}
 
-$mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'domain.com;smtp.domain.com';  // Specify main and backup SMTP servers
-$mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'username';                 // SMTP username
-$mail->Password = 'pass';                           // SMTP password
-$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-$mail->Port = 587;                                    // TCP port to connect to
+// ⚡ Bolt: Security - Use environment variables for secrets
+$smtpHost = getenv('SMTP_HOST');
+$smtpUser = getenv('SMTP_USER');
+$smtpPass = getenv('SMTP_PASS');
 
-$mail->setFrom('mail@mail.com', $from);
-$mail->addAddress('mail@mail.com', 'name');     // Add a recipient
+if (!$smtpHost || !$smtpUser || !$smtpPass) {
+    $msgObj->msg = 'Server configuration error.';
+    header('Content-Type: application/json');
+    echo json_encode($msgObj);
+    exit;
+}
 
-$mail->isHTML(true);                                  // Set email format to HTML
+$mail->isSMTP();
+$mail->Host = $smtpHost;
+$mail->SMTPAuth = true;
+$mail->Username = $smtpUser;
+$mail->Password = $smtpPass;
+$mail->SMTPSecure = 'tls';
+$mail->Port = 587;
 
+$mail->setFrom($from, $name);
+$mail->addAddress(getenv('MAIL_TO') ?: 'mail@mail.com', 'Admin');
+
+$mail->isHTML(true);
 $mail->Subject = $subject;
 $mail->Body    = $msg;
 
 if(!$mail->send()) {
     $msgObj->msg = 'Message could not be sent.';
-    $msgObj->error = 'Mailer Error: ' . $mail->ErrorInfo;
+    // ⚡ Bolt: Security - Log error, don't display to user
+    error_log('Mailer Error: ' . $mail->ErrorInfo);
 } else {
     $msgObj->msg = 'Message has been sent successfully';
 }
