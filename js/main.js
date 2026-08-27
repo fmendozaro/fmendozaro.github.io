@@ -22,6 +22,8 @@ $(document).ready(function () {
     let cards = "", imgsHTML = "";
     let today = new Date();
     let slideShow = $('#slideshow');
+    // ⚡ Bolt: Cache static container to avoid redundant O(N) DOM queries on user interaction
+    let $content = $("#content");
 
     $('.modal').modal();
     $(".sidenav").sidenav({edge: "right"});
@@ -79,7 +81,7 @@ $(document).ready(function () {
 
     $(document).keyup(function (e) {
         //ESC
-        console.log(e.keyCode);
+        // ⚡ Bolt: Removed blocking console.log to improve main thread performance
         if (e.keyCode === 27) {
             if (!konamiExecuted) {
                 closeOverlay();
@@ -104,7 +106,6 @@ $(document).ready(function () {
 
     $(".links").click(function (event) {
         $(".sidenav").sidenav("close");
-        let $content = $("#content");
         let targetText = "#" + $(this).data("target");
         let targetDiv = $(targetText);
 
