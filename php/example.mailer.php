@@ -3,34 +3,45 @@ require '../vendor/phpmailer/phpmailer/PHPMailerAutoload.php';
 
 $mail = new PHPMailer;
 
-$from = $_POST["email"];
-$name = $_POST["fullName"];
-$msg = $_POST["message"];
-$subject = $_POST["subject"];
+// Sentinel: Input Sanitization
+$from = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+$name = filter_input(INPUT_POST, 'fullName', FILTER_SANITIZE_SPECIAL_CHARS);
+$msg = filter_input(INPUT_POST, 'message', FILTER_SANITIZE_SPECIAL_CHARS);
+$subject = filter_input(INPUT_POST, 'subject', FILTER_SANITIZE_SPECIAL_CHARS);
 
 $msgObj = new stdClass();
 
-//    $mail->SMTPDebug = 1;                               // Enable verbose debug output
+if (!$from || !$name || !$msg || !$subject) {
+    $msgObj->msg = 'Invalid input.';
+    header('Content-Type: application/json');
+    echo json_encode($msgObj);
+    exit;
+}
+
+// $mail->SMTPDebug = 1;                              // Enable verbose debug output
 
 $mail->isSMTP();                                      // Set mailer to use SMTP
-$mail->Host = 'domain.com;smtp.domain.com';  // Specify main and backup SMTP servers
+$mail->Host = getenv('SMTP_HOST') ?: 'smtp.domain.com';  // Specify main and backup SMTP servers
 $mail->SMTPAuth = true;                               // Enable SMTP authentication
-$mail->Username = 'username';                 // SMTP username
-$mail->Password = 'pass';                           // SMTP password
+// Sentinel: No hardcoded secrets
+$mail->Username = getenv('SMTP_USERNAME');            // SMTP username
+$mail->Password = getenv('SMTP_PASSWORD');            // SMTP password
 $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 $mail->Port = 587;                                    // TCP port to connect to
 
-$mail->setFrom('mail@mail.com', $from);
-$mail->addAddress('mail@mail.com', 'name');     // Add a recipient
+$mail->setFrom(getenv('SMTP_USERNAME') ?: 'mail@mail.com', $name);
+$mail->addAddress(getenv('CONTACT_EMAIL') ?: 'mail@mail.com', 'Admin');     // Add a recipient
+$mail->addReplyTo($from, $name);
 
-$mail->isHTML(true);                                  // Set email format to HTML
+$mail->isHTML(false);                                 // Set email format to HTML
 
 $mail->Subject = $subject;
 $mail->Body    = $msg;
 
 if(!$mail->send()) {
     $msgObj->msg = 'Message could not be sent.';
-    $msgObj->error = 'Mailer Error: ' . $mail->ErrorInfo;
+    // Sentinel: Do not leak internal error details
+    error_log('Mailer Error: ' . $mail->ErrorInfo);
 } else {
     $msgObj->msg = 'Message has been sent successfully';
 }
