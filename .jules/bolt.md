@@ -9,3 +9,7 @@
 ## 2024-05-20 - [Avoid map().sort().map() for array shuffling]
 **Learning:** Using chained `.map().sort().map()` calls with `Math.random()` to shuffle arrays introduces O(n log n) overhead, creates unnecessary intermediate array allocations, and has inherent statistical bias.
 **Action:** Use the O(n) in-place Fisher-Yates algorithm for shuffling arrays. Always clone the source array first (e.g., `[...array]`) to prevent unintended mutation.
+
+## 2024-10-01 - [Remove Unused CSS Assets]
+**Learning:** The application was loading a 27KB `circle.css` file (`c100` library) via a render-blocking `<link>` tag in `index.html`, but none of its classes were actually being used anywhere in the application.
+**Action:** Periodically audit CSS assets and remove unused files. Always verify class usage with tools like `grep` before making the deletion to ensure safety.
