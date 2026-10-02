@@ -9,3 +9,7 @@
 ## 2024-05-20 - [Avoid map().sort().map() for array shuffling]
 **Learning:** Using chained `.map().sort().map()` calls with `Math.random()` to shuffle arrays introduces O(n log n) overhead, creates unnecessary intermediate array allocations, and has inherent statistical bias.
 **Action:** Use the O(n) in-place Fisher-Yates algorithm for shuffling arrays. Always clone the source array first (e.g., `[...array]`) to prevent unintended mutation.
+
+## 2026-10-02 - [Remove Unused CSS Files]
+**Learning:** Dead CSS files (like `circle.css`) that are linked in the HTML head but whose classes are never used block the main thread during initial page load, delaying CSSOM construction and slowing down the First Contentful Paint.
+**Action:** Regularly audit CSS assets and remove unused files and their corresponding `<link>` tags to reduce payload size and eliminate render-blocking requests.
