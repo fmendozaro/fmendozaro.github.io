@@ -9,3 +9,7 @@
 ## 2024-05-20 - [Avoid map().sort().map() for array shuffling]
 **Learning:** Using chained `.map().sort().map()` calls with `Math.random()` to shuffle arrays introduces O(n log n) overhead, creates unnecessary intermediate array allocations, and has inherent statistical bias.
 **Action:** Use the O(n) in-place Fisher-Yates algorithm for shuffling arrays. Always clone the source array first (e.g., `[...array]`) to prevent unintended mutation.
+
+## 2026-10-03 - [Eliminate render-blocking unused CSS]
+**Learning:** The application was loading a 1065-line `css/circle.css` file in the `<head>` of `index.html`. A codebase search revealed that none of the classes (e.g., `.c100`) were used in the DOM or injected via JS. This forced the browser to download and parse a massive CSS file, unnecessarily blocking the first contentful paint (FCP).
+**Action:** Always verify that CSS files linked in the `<head>` are actively used in the application. Remove dead CSS files and their corresponding links to improve initial page load performance and reduce repository bloat.
