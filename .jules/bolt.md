@@ -9,3 +9,7 @@
 ## 2024-05-20 - [Avoid map().sort().map() for array shuffling]
 **Learning:** Using chained `.map().sort().map()` calls with `Math.random()` to shuffle arrays introduces O(n log n) overhead, creates unnecessary intermediate array allocations, and has inherent statistical bias.
 **Action:** Use the O(n) in-place Fisher-Yates algorithm for shuffling arrays. Always clone the source array first (e.g., `[...array]`) to prevent unintended mutation.
+
+## 2024-05-21 - [Audit and remove unused CSS]
+**Learning:** The `css/circle.css` file (~27KB) was included in the main layout but contained circular progress bar styles (e.g., `.c100`, `.slice`, `.bar`) that were not used anywhere in the application's DOM or dynamically generated via JS. This caused a completely unnecessary render-blocking HTTP request and bloated the initial CSS payload.
+**Action:** When working on performance, always audit CSS files to ensure every linked stylesheet contains classes that are actually used in the application. Remove references to any files that are 100% dead code.
