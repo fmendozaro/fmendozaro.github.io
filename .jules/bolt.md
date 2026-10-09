@@ -9,3 +9,7 @@
 ## 2024-05-20 - [Avoid map().sort().map() for array shuffling]
 **Learning:** Using chained `.map().sort().map()` calls with `Math.random()` to shuffle arrays introduces O(n log n) overhead, creates unnecessary intermediate array allocations, and has inherent statistical bias.
 **Action:** Use the O(n) in-place Fisher-Yates algorithm for shuffling arrays. Always clone the source array first (e.g., `[...array]`) to prevent unintended mutation.
+
+## 2024-10-09 - [Extracting actively used CSS to reduce bundle size]
+**Learning:** The application was loading a 4000+ line external CSS library (`hover.css`) which blocked initial page render, while only using 3 specific utility classes from it (`hvr-wobble-skew`, `hvr-grow-rotate`, `hvr-grow-shadow`).
+**Action:** When working with utility libraries like `hover.css` where only a fraction of classes are used, instead of keeping the whole file which affects parse time and blocks rendering, extract the specific classes and keyframes directly into `custom.css` (while maintaining attribution). Then remove the library link and delete the unused file.
