@@ -19,6 +19,8 @@ $(document).ready(function () {
     let konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65], n = 0;
     let konamiExecuted = false;
     let cardsDiv = $("#cards");
+    // ⚡ Bolt: Cache static container element outside event handler to avoid redundant DOM queries
+    let $content = $("#content");
     let cards = "", imgsHTML = "";
     let today = new Date();
     let slideShow = $('#slideshow');
@@ -79,7 +81,7 @@ $(document).ready(function () {
 
     $(document).keyup(function (e) {
         //ESC
-        console.log(e.keyCode);
+        // ⚡ Bolt: Removed synchronous console.log to prevent main thread blocking
         if (e.keyCode === 27) {
             if (!konamiExecuted) {
                 closeOverlay();
@@ -104,7 +106,6 @@ $(document).ready(function () {
 
     $(".links").click(function (event) {
         $(".sidenav").sidenav("close");
-        let $content = $("#content");
         let targetText = "#" + $(this).data("target");
         let targetDiv = $(targetText);
 
