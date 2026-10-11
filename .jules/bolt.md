@@ -9,3 +9,7 @@
 ## 2024-05-20 - [Avoid map().sort().map() for array shuffling]
 **Learning:** Using chained `.map().sort().map()` calls with `Math.random()` to shuffle arrays introduces O(n log n) overhead, creates unnecessary intermediate array allocations, and has inherent statistical bias.
 **Action:** Use the O(n) in-place Fisher-Yates algorithm for shuffling arrays. Always clone the source array first (e.g., `[...array]`) to prevent unintended mutation.
+
+## 2026-08-02 - [Preconnect Resource Hints for CDNs]
+**Learning:** The application heavily relies on external CDNs for core assets like Materialize CSS/JS, Google Fonts, and Google Analytics. Without early resource hints, the browser must sequentially resolve DNS, establish TCP connections, and negotiate TLS for these external domains only when the tags are encountered during HTML parsing. This adds significant latency to the critical rendering path.
+**Action:** Add `<link rel="preconnect">` tags with appropriate attributes (like `crossorigin` for fonts) in the `<head>` of `index.html` to accelerate these network handshakes before the resources are actively requested, improving initial page load time.
