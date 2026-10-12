@@ -9,3 +9,6 @@
 ## 2024-05-20 - [Avoid map().sort().map() for array shuffling]
 **Learning:** Using chained `.map().sort().map()` calls with `Math.random()` to shuffle arrays introduces O(n log n) overhead, creates unnecessary intermediate array allocations, and has inherent statistical bias.
 **Action:** Use the O(n) in-place Fisher-Yates algorithm for shuffling arrays. Always clone the source array first (e.g., `[...array]`) to prevent unintended mutation.
+## 2024-05-14 - Extracted hover.css classes
+**Learning:** Including entire library CSS files (like `hover.css`, which was ~116KB and over 4,300 lines) when only a fraction of its classes are used is a significant anti-pattern in frontend performance, leading to bloat and longer style recalculations.
+**Action:** Always identify unused styles from large vendor libraries. Extract only the actively utilized keyframes and classes into custom stylesheets, preserve the necessary license attribution, and remove the original bloat file entirely to reduce overall bundle size and improve load times.
